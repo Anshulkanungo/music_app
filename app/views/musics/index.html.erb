@@ -1,0 +1,53 @@
+<div class="bg-img">
+<p id="notice"><%= notice %></p>
+
+<h1 style="color: green;">
+<%= current_user.email%> are organizer</h1>
+<%= link_to "logout", destroy_user_session_path, method: :delete,class: "btn btn-primary"%>
+
+<h1 style="color: green;">Jio Savan</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Genre</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%if @musics.present?%>
+    <% @musics.each do |music| %>
+      <tr>
+        <td>
+        <%= music.genre %>
+      </td>
+      <td>
+        <%= link_to 'Show', music , class: 'btn btn-success'%>
+        <%= link_to 'Edit', edit_music_path(music), class: 'btn btn-info' %>
+        <%= link_to 'Destroy', music, method: :delete, data: { confirm: 'Are you sure?' },class: 'btn btn-danger' %>
+      </td>
+      </tr>
+    <% end %>
+    <%end%>
+  </tbody>
+</table>
+
+<br>
+</div>
+
+<style type="text/css">
+ .bg-img {
+   /* The image used */
+   background-image: url('/assets/download6.jpeg');
+
+   min-height: 500px;
+
+   /* Center and scale the image nicely */
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   position: relative;
+ }
+</style>
+

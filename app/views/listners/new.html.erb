@@ -1,0 +1,12 @@
+<%= form_with(model: @playlist) do |form| %>
+
+  <div class="field">
+    <%= form.label :genre %>
+    <%= form.select :music_id,options_for_select(ActiveStorage::Attachment.all.map {|song| [ song.filename,song.record_id] }),{},class: "form-control" %>
+  </div>
+  <%= form.hidden_field :user_id, value: current_user.id %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

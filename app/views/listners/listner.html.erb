@@ -1,0 +1,56 @@
+<div class="bg-img">
+  <marquee>welcome To Listner</marquee>
+<p id="notice"><%= notice %></p>
+
+<h1 style="color: green;">
+  <%= current_user.email%> As listener
+ </h1>
+
+<h1 style="color: green;">gana.com songs</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Genre</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% Music.all.each do |music| %>
+      <tr>
+        <td><%= music.genre %></td>
+        <td>
+          <!-- <div id="sum"> -->
+        <%= link_to 'Show', music, class:'btn btn-success', id: "address_#{music.id}"%>
+          <!-- </div> -->
+        <%= link_to "Add_Favorite", playlist_new_path(id: music.id), class:'btn btn-warning',class: 'btn btn-info'%>
+
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+</div>
+
+<style type="text/css">
+ .bg-img {
+   /* The image used */
+   background-image: url('/assets/download4.jpeg');
+
+   min-height: 500px;
+
+   /* Center and scale the image nicely */
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   position: relative;
+ }
+</style>
+
+<h2 style="color: Black; text-align: center;"> Bas Bajna Chahiye Gaana</h2>
+
+<!-- $('#sum').html("<#%= escape_javascript #render(:partial => 'musics/show', :locals => { :music => @music }) %>"); -->
+ 

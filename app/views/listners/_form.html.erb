@@ -1,0 +1,25 @@
+<%= form_with(model: @playlist) do |form| %>
+  <% if @playlist.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@playlist.errors.count, "error") %> prohibited this playlist from being saved:</h2>
+
+      <ul>
+        <% @playlist.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :genre %>
+    <%= form.select :music_id,options_for_select(ActiveStorage::Attachment.all.map {|song| [ song.filename,song.record_id] }),{},class: "form-control" %>
+    <%#= form.select :music_id, Music.all.map { |t| [t.songs.map{|song|  song.filename.to_s }.to_s, t.id]}, {},class: "form-control" %>
+  </div>
+  <%#= form.text_field :songs, value: @music_id.songs.first%>
+  <%= form.hidden_field :user_id, value: current_user.id %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

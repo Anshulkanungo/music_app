@@ -1,0 +1,62 @@
+<p id="notice"><%= notice %></p>
+<div id="music_id" data="<%= @music.id%>" onclick="san()">sound</div>
+<div id="sandeep"></div>
+<div 
+onmouseover
+="this.style.backgroundColor='green'">MyWorld.</div>
+
+<p>
+  <strong>Genre:</strong>
+  <%= @music.genre %>
+</p>
+<% @music.songs.each do |file| %>
+  <button><%= link_to "Play Music", file , class: "html5" %> </button>
+<% end %>
+
+
+<h2>Listen to a MP3 Audio</h2>
+<section id="audio"> 
+</section>
+
+<%= link_to 'Edit', edit_music_path(@music) %> |
+<% path = current_user.role == "organizer" ? musics_path : listner_path %>
+<%= link_to 'Back', path %>
+
+<div id = "rating-form"> 
+  <label> Rating</label> 
+  <%= rating_for @music, 'genre'%>
+</div>
+
+
+
+<script >
+  $(document).ready(function() {
+    var rate = "<%= @rate%>"
+    $(".star").attr('data-rating',rate)
+    var audioSection = $('section#audio');
+    $('a.html5').click(function() {
+ 
+        var audio = $('<audio>', {
+             controls : 'controls'
+        });
+ 
+        var url = $(this).attr('href');
+        $('<source>').attr('src', url).appendTo(audio);
+        audioSection.html(audio);
+        return false;
+    });
+
+
+});
+  
+  function san() {
+    $("#sandeep").prepend("<b>Anshul</b>. ")
+  }
+</script> 
+
+<%#= link_to "Add_Favorite", playlist_new_path(id: music.id), class:'btn btn-warning',class: 'btn btn-info'%>
+
+
+
+
+
